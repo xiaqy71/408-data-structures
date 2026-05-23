@@ -7,4 +7,10 @@
 typedef int Status;
 typedef int ElemType; // 可根据需要修改
 
+typedef enum
+{
+    false,
+    true
+} bool;
+
 #endif
