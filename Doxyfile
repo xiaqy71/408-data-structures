@@ -1,0 +1,25 @@
+# Doxygen configuration for 408-data-structures
+
+PROJECT_NAME           = "408 Data Structures"
+PROJECT_BRIEF          = "C implementations and examples for data structures"
+OUTPUT_DIRECTORY       = docs/doxygen
+INPUT                  = README.md include src
+FILE_PATTERNS          = *.c *.h *.md
+RECURSIVE              = YES
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = NO
+EXTRACT_STATIC         = YES
+OPTIMIZE_OUTPUT_FOR_C  = YES
+JAVADOC_AUTOBRIEF      = YES
+USE_MDFILE_AS_MAINPAGE = README.md
+GENERATE_HTML          = YES
+GENERATE_LATEX         = NO
+GENERATE_XML           = NO
+HAVE_DOT               = NO
+QUIET                  = YES
+WARN_IF_UNDOCUMENTED   = YES
+WARN_IF_DOC_ERROR      = YES
+WARN_NO_PARAMDOC       = YES
+FULL_PATH_NAMES        = NO
+SORT_BRIEF_DOCS        = YES
+TOC_INCLUDE_HEADINGS   = 6

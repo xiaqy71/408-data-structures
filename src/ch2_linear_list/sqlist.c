@@ -1,15 +1,15 @@
-#include "common.h"
+/**
+ * @file sqlist.c
+ * @brief Sequential list implementation.
+ */
+#include "sqlist.h"
 #include <stdio.h>
-#define MaxSize 50
 
-/// @brief
-typedef struct
-{
-    ElemType data[MaxSize];
-    int length;
-} SqList;
-
-// Initliaze a SqList
+/**
+ * @brief Initialize a sequential list.
+ *
+ * @param L Pointer to the sequential list to initialize.
+ */
 void InitList(SqList *L)
 {
     for (int i = 0; i < MaxSize; ++i)
@@ -19,20 +19,23 @@ void InitList(SqList *L)
     L->length = 0;
 }
 
-/// @brief Get the current length of the linear list
-/// @param L Lineart List
-/// @return Current length of the list
+/**
+ * @brief Get the current length of a sequential list.
+ *
+ * @param L Sequential list.
+ * @return Current number of valid elements.
+ */
 int Length(SqList L)
 {
     return L.length;
 }
 
 /**
- * @brief Locate an element in the linear list.
+ * @brief Locate an element in a sequential list.
  *
- * @param L Linear list.
+ * @param L Sequential list.
  * @param e Target element.
- * @return Index of the target element if found; otherwise, -1.
+ * @return Zero-based index of the first matching element, or -1 if not found.
  */
 int LocateElem(SqList L, ElemType e)
 {
@@ -46,6 +49,13 @@ int LocateElem(SqList L, ElemType e)
     return -1;
 }
 
+/**
+ * @brief Retrieve an element by index.
+ *
+ * @param L Sequential list.
+ * @param i Zero-based index of the element to retrieve.
+ * @return The stored element, or 0 if the index is out of range.
+ */
 ElemType GetElem(SqList L, int i)
 {
     if (i >= 0 && i < L.length)
@@ -54,9 +64,17 @@ ElemType GetElem(SqList L, int i)
     return 0;
 }
 
+/**
+ * @brief Insert an element into a sequential list.
+ *
+ * @param L Pointer to the sequential list.
+ * @param i Insertion position in the range [0, length].
+ * @param e Element to insert.
+ * @return @ref OK on success, @ref ERROR when the list is full or the position
+ *         is invalid.
+ */
 Status ListInsert(SqList *L, int i, ElemType e)
 {
-    // check if full or i over the Length
     if (L->length == MaxSize || i < 0 || i > L->length)
     {
         return ERROR;
@@ -72,6 +90,14 @@ Status ListInsert(SqList *L, int i, ElemType e)
     return OK;
 }
 
+/**
+ * @brief Delete an element from a sequential list.
+ *
+ * @param L Pointer to the sequential list.
+ * @param i Zero-based index of the element to delete.
+ * @param e Output parameter that receives the deleted element.
+ * @return @ref OK on success, @ref ERROR when the index is invalid.
+ */
 Status ListDelete(SqList *L, int i, ElemType *e)
 {
     if (i < 0 || i > L->length - 1)
@@ -89,6 +115,11 @@ Status ListDelete(SqList *L, int i, ElemType *e)
     return OK;
 }
 
+/**
+ * @brief Print all elements in a sequential list.
+ *
+ * @param L Sequential list to print.
+ */
 void PrintList(SqList L)
 {
     for (int i = 0; i < L.length; ++i)
@@ -99,11 +130,24 @@ void PrintList(SqList L)
     printf("\n");
 }
 
+/**
+ * @brief Check whether a sequential list is empty.
+ *
+ * @param L Sequential list.
+ * @return true when the list contains no elements, otherwise false.
+ */
 bool Empty(SqList L)
 {
     return L.length == 0;
 }
 
+/**
+ * @brief Reset a sequential list to the empty state.
+ *
+ * @param L Pointer to the sequential list.
+ * @return @ref OK when the list is reset successfully, @ref ERROR when the
+ *         pointer is NULL.
+ */
 Status DestroyList(SqList *L)
 {
     if (L == NULL)
@@ -113,19 +157,4 @@ Status DestroyList(SqList *L)
 
     L->length = 0;
     return OK;
-}
-
-int main(int argc, char const *argv[])
-{
-    /* code */
-    SqList l1;
-    InitList(&l1);
-
-    for (int i = 0; i < 10; ++i)
-    {
-        ListInsert(&l1, 0, i + 1);
-    }
-
-    PrintList(l1);
-    return 0;
 }
